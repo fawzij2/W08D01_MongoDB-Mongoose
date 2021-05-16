@@ -61,7 +61,17 @@ app.put("/update/todo", (req, res) => {
         (err,result)=>{res.json(result)}
     );
 });
-app.delete("/delete/todo", (req, res) => {});
+
+// practice 6
+app.delete("/delete/todo", (req, res) => {
+    todoModel.deleteOne({isCompleted:true},(err)=>{
+        if(err){
+            res.json(err)
+        } else {
+            res.json("delete complete")
+        }
+    });
+});
 
 const port = 3000;
 app.listen(port, () => {
