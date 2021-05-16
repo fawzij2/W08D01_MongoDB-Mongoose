@@ -5,7 +5,29 @@ const db = require("./db");
 const app = express();
 app.use(express.json());
 
-app.get("/todos", (req, res) => {});
+//practice 3
+app.get("/todos", (req, res) => {
+    todoModel.find({})
+    .then((result)=>{
+        res.json(result)
+    })
+    .catch((err)=>{
+        res.json(err)
+    })
+});
+
+//practice4
+app.get("/todos/completed", (req, res) => {
+    todoModel.find({isCompleted:true})
+    .then((result)=>{
+        res.json(result);
+    })
+    .catch((err)=>{
+        res.json(err);
+    })
+});
+
+// practice 1
 app.post("/create/todo", (req, res) => {
     const task = req.body.task;
     const description = req.body.description;
