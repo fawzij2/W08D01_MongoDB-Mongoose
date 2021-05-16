@@ -16,7 +16,7 @@ app.get("/todos", (req, res) => {
     })
 });
 
-//practice4
+//practice 4
 app.get("/todos/completed", (req, res) => {
     todoModel.find({isCompleted:true})
     .then((result)=>{
@@ -52,7 +52,15 @@ app.post("/create/todo", (req, res) => {
         res.json(err)
     })
 });
-app.put("/update/todo", (req, res) => {});
+
+// practice 5
+app.put("/update/todo", (req, res) => {
+    const updatedTask = todoModel.updateOne(
+        {isCompleted:false},
+        {isCompleted:true, task: "solve last question"},
+        (err,result)=>{res.json(result)}
+    );
+});
 app.delete("/delete/todo", (req, res) => {});
 
 const port = 3000;
